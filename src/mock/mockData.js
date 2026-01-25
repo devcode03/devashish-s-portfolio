@@ -1,4 +1,19 @@
-// Mock data for developer portfolio
+import { FaReact, FaNode, FaJava,  FaAws, FaGithub } from 'react-icons/fa';
+import { 
+  SiNextdotjs, 
+  SiTypescript, 
+  SiTailwindcss, 
+  SiRedux, 
+  SiFastapi, 
+  SiMongodb, 
+  SiKubernetes, 
+  SiGraphql 
+} from 'react-icons/si';
+import { VscAzureDevops } from "react-icons/vsc";
+import { FaArrowsSpin, FaGear } from "react-icons/fa6";
+import { TbPlugConnected } from "react-icons/tb";
+import { TbTimelineEventExclamation } from "react-icons/tb";
+
 
 export const projects = [
   {
@@ -101,94 +116,89 @@ export const projects = [
 
 export const skills = {
   frontend: [
-    { name: 'React', level: 95, version: '^19.0.0' },
-    { name: 'Next.js', level: 90, version: '^15.0.0' },
-    { name: 'TypeScript', level: 92, version: '^5.3.0' },
-    { name: 'Tailwind CSS', level: 95, version: '^3.4.0' },
-    { name: 'Vue.js', level: 85, version: '^3.4.0' },
-    { name: 'Redux/Zustand', level: 88, version: '^5.0.0' }
+    { name: 'React', level: 95, version: '^19.0.0', icon: FaReact },
+    { name: 'Next.js', level: 90, version: '^15.0.0', icon: SiNextdotjs },
+    { name: 'TypeScript', level: 80, version: '^5.3.0', icon: SiTypescript },
+    { name: 'Tailwind CSS', level: 95, version: '^3.4.0', icon: SiTailwindcss },
+    { name: 'Redux/Zustand', level: 85, version: '^5.0.0', icon: SiRedux }
   ],
   backend: [
-    { name: 'Node.js', level: 93, version: '^20.0.0' },
-    { name: 'Python', level: 88, version: '^3.12' },
-    { name: 'FastAPI', level: 90, version: '^0.110.0' },
-    { name: 'PostgreSQL', level: 87, version: '^16.0' },
-    { name: 'MongoDB', level: 92, version: '^7.0' },
-    { name: 'Redis', level: 85, version: '^7.2' }
+    { name: 'Node.js', level: 93, version: '^20.0.0', icon: FaNode },
+    { name: 'Java SpringBoot', level: 88, version: '^3.12', icon: FaJava },
+    { name: 'FastAPI', level: 90, version: '^0.110.0', icon: SiFastapi },
+    { name: 'MongoDB', level: 92, version: '^7.0', icon: SiMongodb },
   ],
   tools: [
-    { name: 'Docker', level: 90, version: '^24.0' },
-    { name: 'Kubernetes', level: 85, version: '^1.28' },
-    { name: 'Git', level: 95, version: '^2.43' },
-    { name: 'CI/CD', level: 88, version: 'Jenkins/GitHub Actions' },
-    { name: 'AWS', level: 86, version: 'EC2/S3/Lambda' },
-    { name: 'Nginx', level: 87, version: '^1.25' }
+    { name: 'Azure', level: 90, version: '^24.0', icon: VscAzureDevops },
+    { name: 'Kubernetes', level: 85, version: '^1.28', icon: SiKubernetes },
+    { name: 'Git', level: 95, version: '^2.43', icon: FaGithub },
+    { name: 'CI/CD', level: 88, version: 'Jenkins/GitHub Actions', icon: FaArrowsSpin },
+    { name: 'AWS', level: 86, version: 'EC2/S3/Lambda', icon: FaAws },
   ],
   architecture: [
-    { name: 'Microservices', level: 89 },
-    { name: 'RESTful APIs', level: 95 },
-    { name: 'GraphQL', level: 87 },
-    { name: 'WebSockets', level: 90 },
-    { name: 'Event-Driven', level: 85 },
-    { name: 'SOLID Principles', level: 92 }
+    { name: 'Microservices', level: 75, icon:FaGear },
+    { name: 'RESTful APIs', level: 95, icon:TbPlugConnected },
+    { name: 'GraphQL', level: 87, icon: SiGraphql },
+    { name: 'Event-Driven', level: 85, icon:TbTimelineEventExclamation },
   ]
 };
 
 export const experience = [
+  // {
+  //   id: '1',
+  //   commit: 'a3f8b2c',
+  //   date: '2023-01 - Present',
+  //   role: 'Senior Frontend Engineer',
+  //   company: 'TechCorp Inc.',
+  //   description: 'Leading frontend architecture and performance optimization initiatives. Built design system adopted across 5 product teams.',
+  //   achievements: [
+  //     'Reduced bundle size by 60% through code splitting',
+  //     'Implemented micro-frontend architecture',
+  //     'Mentored 6 junior developers',
+  //     'Led migration from Vue 2 to React 18'
+  //   ]
+  // },
   {
     id: '1',
-    commit: 'a3f8b2c',
-    date: '2023-01 - Present',
-    role: 'Senior Frontend Engineer',
-    company: 'TechCorp Inc.',
-    description: 'Leading frontend architecture and performance optimization initiatives. Built design system adopted across 5 product teams.',
+    commit: 'b7d4e9a',
+    date: '2022-12 - Present',
+    role: 'Full Stack Developer',
+    company: 'Deloitte USI',
+    description: 'Worked on scalable projects. Focused on performance, accesibility, reuseability , and user experience.',
     achievements: [
-      'Reduced bundle size by 60% through code splitting',
-      'Implemented micro-frontend architecture',
-      'Mentored 6 junior developers',
-      'Led migration from Vue 2 to React 18'
+      'Designed and implemented microservices architecture with React-based UI components',
+      'Enhanced database performance by 48% through strategic query optimization',
+      'Developed WCAG 2.1 AA compliant components ensuring accessibility standards',
+      'Elevated overall user interface and experience design patterns',
+      'Built and maintained a component library powering 2800+ application screens',
     ]
   },
   {
     id: '2',
-    commit: 'b7d4e9a',
-    date: '2021-06 - 2022-12',
-    role: 'Full Stack Developer',
-    company: 'StartupX',
-    description: 'Built scalable web applications from scratch. Focused on performance, security, and user experience.',
+    commit: 'c1a5f7e',
+    date: '2022-09 - 2022-12',
+    role: 'Frontend Developer',
+    company: 'FreeLancer.',
+    description: 'Developed responsive web applications and e-commerce platforms for diverse clients.',
     achievements: [
-      'Architected real-time collaboration features',
-      'Optimized database queries (50% faster)',
-      'Implemented CI/CD pipeline',
-      'Built RESTful and GraphQL APIs'
+      'Successfully delivered 5+ production-ready client projects on schedule',
+      'Achieved Lighthouse performance scores of 95+ through optimization techniques',
+      'Engineered a scalable, reusable component library for rapid development',
+      'Integrated multiple payment gateways including Stripe, PayPal, and RazorPay'
     ]
   },
   {
     id: '3',
-    commit: 'c1a5f7e',
-    date: '2019-03 - 2021-05',
-    role: 'Frontend Developer',
-    company: 'Digital Agency Co.',
-    description: 'Developed responsive web applications and e-commerce platforms for diverse clients.',
-    achievements: [
-      'Delivered 20+ client projects',
-      'Improved Lighthouse scores to 95+',
-      'Created reusable component library',
-      'Integrated payment gateways (Stripe, PayPal)'
-    ]
-  },
-  {
-    id: '4',
     commit: 'd9e2c4b',
-    date: '2017-08 - 2019-02',
-    role: 'Junior Developer',
-    company: 'WebDev Studio',
+    date: '2021-09 - 2021-10',
+    role: 'Intern',
+    company: 'SkillVertex',
     description: 'Started career building websites and learning modern web technologies.',
     achievements: [
-      'Mastered JavaScript ES6+',
-      'Built responsive UI components',
-      'Collaborated with design team',
-      'Learned Git workflow and Agile'
+      'Developed core Java applications and business logic implementations',
+      'Created custom algorithms to address specific use case requirements',
+      'Collaborated effectively with design teams and business analysts',
+      'Adopted Git version control and Agile development methodologies'
     ]
   }
 ];

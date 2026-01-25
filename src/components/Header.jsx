@@ -44,7 +44,7 @@ const Header = ({ onNavigate }) => {
           >
             <Terminal className="text-purple-500 group-hover:text-pink-500 transition-colors duration-200" size={24} />
             <span className="text-white font-mono font-bold text-lg group-hover:text-purple-400 transition-colors duration-200">
-              devashish.surve
+              surve.Dev
             </span>
           </button>
 

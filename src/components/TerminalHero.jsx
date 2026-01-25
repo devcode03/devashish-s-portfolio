@@ -171,7 +171,7 @@ const TerminalHero = ({ onCommandExecute }) => {
           </div>
         </div>
 
-        <div className="mt-6 flex flex-wrap gap-3 justify-center">
+        {/* <div className="mt-6 flex flex-wrap gap-3 justify-center">
           {['about', 'skills', 'projects', 'experience', 'contact'].map((cmd) => (
             <button
               key={cmd}
@@ -182,7 +182,7 @@ const TerminalHero = ({ onCommandExecute }) => {
               {cmd}
             </button>
           ))}
-        </div>
+        </div> */}
       </div>
     </section>
   );

@@ -1,5 +1,7 @@
 import React from 'react';
 import { Terminal, Heart, Github, Linkedin, Mail } from 'lucide-react';
+import { contactInfo } from '../config/contactInfo';
+import { SiBuymeacoffee } from "react-icons/si";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -41,7 +43,7 @@ const Footer = () => {
             <h3 className="text-white font-mono font-bold mb-4">Connect</h3>
             <div className="flex space-x-4">
               <a
-                href="https://github.com"
+                href={contactInfo.github.url}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="p-3 bg-gray-800 rounded-lg border border-purple-500/30 hover:border-pink-500/50 transition-colors duration-200"
@@ -49,7 +51,7 @@ const Footer = () => {
                 <Github className="text-purple-400" size={20} />
               </a>
               <a
-                href="https://linkedin.com"
+                href={contactInfo.linkedin.url}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="p-3 bg-gray-800 rounded-lg border border-purple-500/30 hover:border-pink-500/50 transition-colors duration-200"
@@ -57,7 +59,7 @@ const Footer = () => {
                 <Linkedin className="text-purple-400" size={20} />
               </a>
               <a
-                href="mailto:alex.rodriguez@example.com"
+                href={`mailto:${contactInfo.email}`}
                 className="p-3 bg-gray-800 rounded-lg border border-purple-500/30 hover:border-pink-500/50 transition-colors duration-200"
               >
                 <Mail className="text-purple-400" size={20} />
@@ -73,7 +75,8 @@ const Footer = () => {
               <span className="text-pink-500">$</span> echo "© {currentYear} Alex Rodriguez. All rights reserved."
             </p>
             <p className="text-gray-400 text-sm font-mono flex items-center">
-              Made with <Heart className="text-pink-500 mx-2" size={16} fill="currentColor" /> and lots of coffee
+              Made with <Heart className="text-pink-500 mx-2" size={16} fill="currentColor" /> and lots of coffee <SiBuymeacoffee className='text-xl text-purple-400' />
+
             </p>
           </div>
         </div>

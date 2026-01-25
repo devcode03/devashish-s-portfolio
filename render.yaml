@@ -1,0 +1,50 @@
+# Render Blueprint for Portfolio Project
+# This file defines the infrastructure for deploying your portfolio on Render
+
+services:
+  # Backend Service (FastAPI)
+  - type: web
+    name: portfolio-backend
+    runtime: python
+    plan: free
+    region: singapore
+    buildCommand: pip install -r src/backend/requirements.txt
+    startCommand: cd src/backend && uvicorn server:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: MONGO_URL
+        sync: false # Set this in Render Dashboard
+      - key: DB_NAME
+        value: portfolio_db
+      - key: SECRET_KEY
+        generateValue: true # Render will auto-generate a secure key
+      - key: ALGORITHM
+        value: HS256
+      - key: ACCESS_TOKEN_EXPIRE_MINUTES
+        value: 43200
+      - key: HOST
+        value: 0.0.0.0
+      - key: PORT
+        fromService:
+          type: web
+          name: portfolio-backend
+          property: port
+    healthCheckPath: /api/health
+
+  # Frontend Service (React + Vite)
+  - type: web
+    name: portfolio-frontend
+    runtime: node
+    plan: free
+    region: singapore
+    buildCommand: npm install && npm run build
+    staticPublishPath: ./dist
+    envVars:
+      - key: VITE_BACKEND_URL
+        fromService:
+          type: web
+          name: portfolio-backend
+          property: url
+    headers:
+      - path: /*
+        name: Cache-Control
+        value: public, max-age=3600

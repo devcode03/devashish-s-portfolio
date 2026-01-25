@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { Code2, Package, Terminal, CheckCircle2 } from 'lucide-react';
 import { skills } from '../mock/mockData';
 
+const randomDay = String(Math.floor(Math.random() * 28) + 1).padStart(2, '0');
+
 const SkillsSection = () => {
   const [activeCategory, setActiveCategory] = useState('frontend');
 
@@ -50,13 +52,18 @@ const SkillsSection = () => {
               style={{ animationDelay: `${idx * 0.1}s` }}
             >
               <div className="flex items-center justify-between mb-4">
-                <div>
-                  <h3 className="text-xl font-bold text-white font-mono">{skill.name}</h3>
-                  {skill.version && (
-                    <p className="text-sm text-gray-500 font-mono mt-1">
-                      <span className="text-purple-400">version:</span> {skill.version}
-                    </p>
+                <div className="flex items-center space-x-3">
+                  {skill.icon && (
+                    <skill.icon className="text-4xl text-purple-400" />
                   )}
+                  <div>
+                    <h3 className="text-xl font-bold text-white font-mono">{skill.name}</h3>
+                    {skill.version && (
+                      <p className="text-sm text-gray-500 font-mono mt-1">
+                        <span className="text-purple-400">version:</span> {skill.version}
+                      </p>
+                    )}
+                  </div>
                 </div>
                 {skill.level && (
                   <div className="text-right">
@@ -95,7 +102,7 @@ const SkillsSection = () => {
             <div className="mt-2 pl-4">
               <div className="text-cyan-400">Total Technologies: {Object.values(skills).flat().length}</div>
               <div className="text-green-400">Status: Production Ready</div>
-              <div className="text-yellow-400">Last Updated: 2025-01-{String(Math.floor(Math.random() * 28) + 1).padStart(2, '0')}</div>
+              <div className="text-yellow-400">Last Updated: 2025-01-{randomDay}</div>
             </div>
           </div>
         </div>
