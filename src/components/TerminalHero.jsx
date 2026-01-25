@@ -27,8 +27,8 @@ const TerminalHero = ({ onCommandExecute }) => {
     ],
     whoami: () => [
       '{',
-      '  "name": "Alex Rodriguez",',
-      '  "role": "Engineer && Frontend Developer",',
+      '  "name": "Devashish Surve",',
+      '  "role": "Full Stack Developer",',
       '  "passion": "Building scalable, performant web applications",',
       '  "status": "Available for opportunities"',
       '}'
