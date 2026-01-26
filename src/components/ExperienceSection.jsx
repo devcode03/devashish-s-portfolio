@@ -4,7 +4,7 @@ import { experience } from '../mock/mockData';
 
 const ExperienceSection = () => {
   return (
-    <section className="min-h-screen py-20 px-4 bg-gray-950/50" id="experience">
+    <section className="min-h-screen py-20 px-4" id="experience">
       <div className="max-w-6xl mx-auto">
         <div className="mb-12">
           <div className="flex items-center space-x-3 mb-4">

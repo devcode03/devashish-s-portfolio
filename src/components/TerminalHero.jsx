@@ -121,8 +121,13 @@ const TerminalHero = ({ onCommandExecute }) => {
 
   return (
     <section className="min-h-screen flex items-center justify-center px-4 py-20" id="home">
-      <div className="w-full max-w-4xl">
-        <div className="bg-gray-900 rounded-lg shadow-2xl border border-purple-500/30 overflow-hidden">
+      <div className="w-full max-w-4xl" style={{ pointerEvents: 'auto' }}>
+        <div 
+          className="bg-gray-900 rounded-lg shadow-2xl border border-purple-500/40 overflow-hidden"
+          style={{
+            boxShadow: '0 0 15px rgba(168, 85, 247, 0.15), 0 0 30px rgba(168, 85, 247, 0.08)'
+          }}
+        >
           <div className="bg-gray-800 px-4 py-3 flex items-center justify-between border-b border-purple-500/30">
             <div className="flex items-center space-x-2">
               <div className="w-3 h-3 rounded-full bg-red-500"></div>
