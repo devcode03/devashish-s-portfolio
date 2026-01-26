@@ -1,6 +1,7 @@
 import React from 'react';
 import { User, Code2, MapPin, Mail, Coffee, Terminal } from 'lucide-react';
 import { aboutData } from '../mock/mockData';
+import TiltedCard from './TitleCard';
 
 const AboutSection = () => {
   return (
@@ -45,6 +46,28 @@ const AboutSection = () => {
               ))}
               <span className="text-pink-500">{'}'}</span>
             </pre>
+            <div className="ml-1 mt-2">
+              <TiltedCard
+                imageSrc="/assets/dp.jpg"
+                altText="Profile Picture"
+                captionText="Developer Profile"
+                containerHeight="300px"
+                containerWidth="300px"
+                imageHeight="300px"
+                imageWidth="300px"
+                rotateAmplitude={30}
+                scaleOnHover={1.05}
+                showMobileWarning={false}
+                showTooltip={false}
+                displayOverlayContent
+                overlayContent={
+                  <p className="tilted-card-demo-text">
+                    Devashish Surve
+                  </p>
+                }
+              />
+            </div>
+
           </div>
 {/* info cards */}
           <div className="space-y-4">

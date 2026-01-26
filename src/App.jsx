@@ -12,6 +12,7 @@ import ContactSection from "./components/ContactSection";
 import AdminLogin from "./pages/AdminLogin";
 import AdminDashboard from "./pages/AdminDashboard";
 import { Toaster } from "./components/ui/toaster";
+import Particles from "./components/Particles";
 
 const HomePage = () => {
   const handleNavigate = (sectionId) => {
@@ -23,16 +24,33 @@ const HomePage = () => {
 
   return (
     <div className="bg-gray-950">
-      <Header onNavigate={handleNavigate} />
-      <main>
-        <TerminalHero onCommandExecute={handleNavigate} />
-        <AboutSection />
-        <SkillsSection />
-        <ProjectsSection />
-        <ExperienceSection />
-        <ContactSection />
-      </main>
-      <Footer />
+      <div style={{ position: 'fixed', top: 0, left: 0, width: '100%', height: '100vh', zIndex: 0, pointerEvents: 'none' }}>
+        <Particles
+          particleColors={["#8B5CF6", "#A78BFA", "#C4B5FD", "#E0E7FF", "#60A5FA", "#93C5FD", "#DBEAFE", "#F472B6", "#FBBF24"]}
+          particleCount={900}
+          particleSpread={18}
+          speed={0.2}
+          particleBaseSize={160}
+          moveParticlesOnHover
+          alphaParticles={false}
+          disableRotation={false}
+          pixelRatio="2"
+        />
+      </div>
+      <div style={{ position: 'relative', zIndex: 1 }}>
+        <Header onNavigate={handleNavigate} />
+        <main>
+          <div style={{ pointerEvents: 'none' }}>
+            <TerminalHero onCommandExecute={handleNavigate} />
+          </div>
+          <AboutSection />
+          <SkillsSection />
+          <ProjectsSection />
+          <ExperienceSection />
+          <ContactSection />
+        </main>
+        <Footer />
+      </div>
     </div>
   );
 };
