@@ -29,9 +29,24 @@ const ResumeSection = () => {
   const [showViewer, setShowViewer] = useState(false);
 
   const handleDownload = () => {
+    // Convert Google Drive link to direct download URL
+    let downloadUrl = aboutData.resumeUrl;
+    
+    try {
+      const parsed = new URL(downloadUrl);
+      if (parsed.hostname.includes('drive.google.com')) {
+        const fileIdMatch = parsed.pathname.match(/\/file\/d\/([^/]+)/);
+        if (fileIdMatch?.[1]) {
+          downloadUrl = `https://drive.google.com/uc?export=download&id=${fileIdMatch[1]}`;
+        }
+      }
+    } catch (error) {
+      console.error('Error parsing URL:', error);
+    }
+
     // Create a temporary link and trigger download
     const link = document.createElement('a');
-    link.href = aboutData.resumeUrl;
+    link.href = downloadUrl;
     link.download = 'Alex_Rodriguez_Resume.pdf';
     link.target = '_blank';
     document.body.appendChild(link);
