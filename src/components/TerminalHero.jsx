@@ -20,6 +20,7 @@ const TerminalHero = ({ onCommandExecute }) => {
       '  skills        - Navigate to skills section',
       '  projects      - Navigate to projects section',
       '  experience    - Navigate to experience section',
+      '  resume        - Navigate to resume section',
       '  contact       - Navigate to contact section',
       '  clear         - Clear terminal',
       '  github        - Open GitHub profile',
@@ -48,6 +49,10 @@ const TerminalHero = ({ onCommandExecute }) => {
     experience: () => {
       onCommandExecute('experience');
       return ['Navigating to Experience section...'];
+    },
+    resume: () => {
+      onCommandExecute('resume');
+      return ['Navigating to Resume section...'];
     },
     contact: () => {
       onCommandExecute('contact');

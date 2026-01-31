@@ -11,6 +11,7 @@ import ExperienceSection from "./components/ExperienceSection";
 import ContactSection from "./components/ContactSection";
 import { Toaster } from "./components/ui/toaster";
 import Particles from "./components/Particles";
+import ResumeSection from "./components/ResumeSection";
 
 // Lazy load admin pages (code splitting)
 const AdminLogin = lazy(() => import("./pages/AdminLogin"));
@@ -49,6 +50,7 @@ const HomePage = () => {
           <SkillsSection />
           <ProjectsSection />
           <ExperienceSection />
+          <ResumeSection />
           <ContactSection />
         </main>
         <Footer />

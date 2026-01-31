@@ -14,7 +14,7 @@ const Footer = () => {
           <div>
             <div className="flex items-center space-x-2 mb-4">
               <Terminal className="text-purple-500" size={24} />
-              <span className="text-white font-mono font-bold text-lg">alex.dev</span>
+              <span className="text-white font-mono font-bold text-lg">surve.dev</span>
             </div>
             <p className="text-gray-400 text-sm font-mono">
               Building scalable, performant web applications with clean architecture.
@@ -25,8 +25,7 @@ const Footer = () => {
           <div>
             <h3 className="text-white font-mono font-bold mb-4">Quick Links</h3>
             <ul className="space-y-2">
-              {['About', 'Skills', 'Projects', 'Experience', 'Contact'].map((item) => (
-                <li key={item}>
+              {['About', 'Skills', 'Projects', 'Experience', 'Resume', 'Contact'].map((item) => (                <li key={item}>
                   <a
                     href={`#${item.toLowerCase()}`}
                     className="text-gray-400 hover:text-purple-400 text-sm font-mono transition-colors duration-200"
