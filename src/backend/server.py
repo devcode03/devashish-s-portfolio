@@ -115,6 +115,10 @@ async def startup_event():
         await db.projects.create_index("id", unique=True)
         await db.contacts.create_index("id", unique=True)
         await db.admins.create_index("username", unique=True)
+        await db.projects.create_index([("createdAt", -1)])
+        await db.projects.create_index("status")
+        await db.projects.create_index("techStack")
+        
         logger.info("✓ Database indexes created")
         
         logger.info("="*50)
