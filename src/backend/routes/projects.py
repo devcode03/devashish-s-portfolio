@@ -30,7 +30,9 @@ async def get_projects(tech: Optional[str] = None, status: Optional[str] = None)
             query["status"] = status
         
         projection = {"_id": 1, "id": 1, "name": 1, "description": 1, "techStack": 1, "features": 1, "liveDemo": 1, "githubRepo": 1, "status": 1, "createdAt": 1, "updatedAt": 1}
-        projects = await db.projects.find(query, projection).sort("createdAt", -1).to_list(100)
+        projects = await db.projects.find(query, projection).sort("createdAt", -1).limit(50).to_list(50)
+        
+        logger.info(f"Fetched {len(projects)} projects in {query} with filters")
         
         # Convert MongoDB _id to string and remove it
         for project in projects:

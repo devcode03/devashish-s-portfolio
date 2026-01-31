@@ -3,6 +3,33 @@ import axios from 'axios';
 const BACKEND_URL = import.meta.env.VITE_BACKEND_URL || 'http://localhost:8000';
 const API = `${BACKEND_URL}/api`;
 
+// Simple in-memory cache for API responses
+const cache = {
+  projects: null,
+  projects_timestamp: null,
+  CACHE_DURATION: 5 * 60 * 1000, // 5 minutes
+  
+  isValid(key) {
+    if (!this[key]) return false;
+    if (!this[`${key}_timestamp`]) return false;
+    return Date.now() - this[`${key}_timestamp`] < this.CACHE_DURATION;
+  },
+  
+  get(key) {
+    return this.isValid(key) ? this[key] : null;
+  },
+  
+  set(key, value) {
+    this[key] = value;
+    this[`${key}_timestamp`] = Date.now();
+  },
+  
+  clear(key) {
+    this[key] = null;
+    this[`${key}_timestamp`] = null;
+  }
+};
+
 // API client with default config
 const apiClient = axios.create({
   baseURL: API,
@@ -23,11 +50,30 @@ apiClient.interceptors.request.use((config) => {
 // Projects API
 export const projectsAPI = {
   getAll: async (tech = null, status = null) => {
+    // Check cache only if no filters
+    if (!tech && !status) {
+      const cached = cache.get('projects');
+      if (cached) {
+        console.log('Using cached projects data');
+        return cached;
+      }
+    }
+    
     const params = {};
     if (tech) params.tech = tech;
     if (status) params.status = status;
     const response = await apiClient.get('/projects', { params });
+    
+    // Cache only unfiltered requests
+    if (!tech && !status) {
+      cache.set('projects', response.data);
+    }
+    
     return response.data;
+  },
+  
+  invalidateCache() {
+    cache.clear('projects');
   },
   
   getById: async (id) => {
