@@ -1,13 +1,13 @@
-import { FaReact, FaNode, FaJava,  FaAws, FaGithub } from 'react-icons/fa';
-import { 
-  SiNextdotjs, 
-  SiTypescript, 
-  SiTailwindcss, 
-  SiRedux, 
-  SiFastapi, 
-  SiMongodb, 
-  SiKubernetes, 
-  SiGraphql 
+import { FaReact, FaNode, FaJava, FaAws, FaGithub } from 'react-icons/fa';
+import {
+  SiNextdotjs,
+  SiTypescript,
+  SiTailwindcss,
+  SiRedux,
+  SiFastapi,
+  SiMongodb,
+  SiKubernetes,
+  SiGraphql
 } from 'react-icons/si';
 import { VscAzureDevops } from "react-icons/vsc";
 import { FaArrowsSpin, FaGear } from "react-icons/fa6";
@@ -18,100 +18,36 @@ import { TbTimelineEventExclamation } from "react-icons/tb";
 export const projects = [
   {
     id: '1',
-    name: 'E-Commerce Platform',
-    description: 'Full-stack e-commerce solution with real-time inventory management, payment processing, and admin dashboard.',
-    techStack: ['React', 'Node.js', 'MongoDB', 'Stripe', 'Redis'],
+    name: 'MySplits',
+    description: 'Splitto is a modern, intuitive web app for splitting group expenses with friends, family, or colleagues. Easily track payments, calculate who owes whom, and settle up with the simplest possible transactions—no registration or app install required!.',
+    techStack: ['React', 'JavaScript', 'Css', 'Firebase', 'Context API'],
     features: [
-      'Real-time inventory sync',
+      'Easy Split money',
       'Stripe payment integration',
       'Admin dashboard with analytics',
       'Redis caching for performance',
       'JWT authentication'
     ],
-    liveDemo: 'https://demo-ecommerce.example.com',
-    githubRepo: 'https://github.com/username/ecommerce',
+    liveDemo: 'https://devcode03.github.io/Splitto/',
+    githubRepo: 'https://github.com/devcode03/Splitto',
     status: 'production'
   },
   {
     id: '2',
-    name: 'AI Chat Application',
-    description: 'Real-time chat application with AI-powered message suggestions and sentiment analysis.',
-    techStack: ['React', 'WebSocket', 'Python', 'TensorFlow', 'PostgreSQL'],
+    name: 'Flow - Todo',
+    description: 'Flow is a full-stack task tracker for daily planning, calendar review, and weekly analytics. It keeps the loop simple: add tasks, mark the wins, track what slipped, and use the data to plan better tomorrow.',
+    techStack: ['React', 'Next Js', 'Typescript', 'supabase', 'vercel'],
     features: [
-      'WebSocket real-time messaging',
-      'AI message suggestions',
-      'Sentiment analysis',
-      'End-to-end encryption',
-      'Group chat support'
+      'Create, delete, and mark daily tasks as pending, completed, or failed.',
+      'Jump through months and inspect task status by day.',
+      'View completed, failed, total tasks, rate, and day-by-day progress.	',
+      'Credentials + Google auth through NextAuth.',
+      'Per-user task persistence with protected API routes.'
     ],
-    liveDemo: 'https://ai-chat.example.com',
-    githubRepo: 'https://github.com/username/ai-chat',
+    liveDemo: 'https://task-tracker-git-main-devcode03s-projects.vercel.app/today',
+    githubRepo: 'https://github.com/devcode03/task-tracker',
     status: 'production'
   },
-  {
-    id: '3',
-    name: 'DevOps Dashboard',
-    description: 'Kubernetes cluster monitoring dashboard with CI/CD pipeline visualization and log aggregation.',
-    techStack: ['Vue.js', 'Go', 'Kubernetes', 'Prometheus', 'Grafana'],
-    features: [
-      'Real-time cluster metrics',
-      'CI/CD pipeline tracking',
-      'Log aggregation and search',
-      'Alert management',
-      'Custom dashboard builder'
-    ],
-    liveDemo: 'https://devops-dash.example.com',
-    githubRepo: 'https://github.com/username/devops-dashboard',
-    status: 'production'
-  },
-  {
-    id: '4',
-    name: 'Code Collaboration Tool',
-    description: 'Real-time code collaboration platform with live cursors, syntax highlighting, and version control.',
-    techStack: ['React', 'Node.js', 'Socket.io', 'Monaco Editor', 'Git'],
-    features: [
-      'Real-time collaborative editing',
-      'Live cursor tracking',
-      'Syntax highlighting for 50+ languages',
-      'Built-in version control',
-      'Voice/video chat integration'
-    ],
-    liveDemo: 'https://code-collab.example.com',
-    githubRepo: 'https://github.com/username/code-collab',
-    status: 'beta'
-  },
-  {
-    id: '5',
-    name: 'Performance Analytics Engine',
-    description: 'High-performance analytics engine processing millions of events per second with custom query language.',
-    techStack: ['Rust', 'TimescaleDB', 'React', 'GraphQL', 'Apache Kafka'],
-    features: [
-      'Custom query language (SQL-like)',
-      'Real-time event processing',
-      'Distributed architecture',
-      'Sub-second query response',
-      'Data visualization suite'
-    ],
-    liveDemo: 'https://analytics.example.com',
-    githubRepo: 'https://github.com/username/analytics-engine',
-    status: 'production'
-  },
-  {
-    id: '6',
-    name: 'Blockchain Explorer',
-    description: 'Multi-chain blockchain explorer with transaction tracking, wallet analysis, and smart contract verification.',
-    techStack: ['Next.js', 'Web3.js', 'Solidity', 'MongoDB', 'Redis'],
-    features: [
-      'Multi-chain support (ETH, BSC, Polygon)',
-      'Smart contract verification',
-      'Wallet transaction history',
-      'Gas price predictions',
-      'NFT gallery integration'
-    ],
-    liveDemo: 'https://explorer.example.com',
-    githubRepo: 'https://github.com/username/blockchain-explorer',
-    status: 'production'
-  }
 ];
 
 export const skills = {
@@ -136,10 +72,7 @@ export const skills = {
     { name: 'AWS', level: 86, version: 'EC2/S3/Lambda', icon: FaAws },
   ],
   architecture: [
-    { name: 'Microservices', level: 75, icon:FaGear },
-    { name: 'RESTful APIs', level: 95, icon:TbPlugConnected },
-    { name: 'GraphQL', level: 87, icon: SiGraphql },
-    { name: 'Event-Driven', level: 85, icon:TbTimelineEventExclamation },
+    { name: 'Microservices', level: 75, icon: FaGear },
   ]
 };
 
@@ -209,10 +142,9 @@ export const aboutData = {
   location: 'Hyderabad, TN',
   email: 'devashishsurve.official@gmail.com',
   mindset: 'efficiency, performance, scalability',
-  currentFocus: ['DSA','Web Development' ,'Developer Experience', 'System Design'],
-  yearsOfExperience: 3,
+  currentFocus: ['DSA', 'Web Development', 'Developer Experience', 'System Design'],
+  yearsOfExperience: 3.8,
   projectsCompleted: 5,
   coffeeConsumed: '∞',
   favoriteEditor: 'VS Code',
-  resumeUrl: 'https://drive.google.com/file/d/1UqOngV49VOXqOYu-_LDhdUkDGVbLcS5a/view?usp=sharing'
 };

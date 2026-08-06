@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Mail, Send, CheckCircle2, XCircle } from 'lucide-react';
 import { toast } from '../hooks/use-toast';
-import { contactAPI } from '../services/api';
 import { contactInfo } from '../config/contactInfo';
 import { SiLeetcode } from "react-icons/si";
 
@@ -41,35 +40,39 @@ const ContactSection = () => {
     }
 
     try {
-      const response = await contactAPI.submit(formData);
-      
+      const subject = encodeURIComponent(formData.subject);
+      const body = encodeURIComponent(
+        `${formData.message}\n\n— ${formData.name} (${formData.email})`
+      );
+      window.location.href = `mailto:${contactInfo.email}?subject=${subject}&body=${body}`;
+
       await new Promise(resolve => setTimeout(resolve, 500));
-      setTerminalOutput(prev => [...prev, { 
-        text: '✓ Message sent successfully!', 
-        type: 'success' 
+      setTerminalOutput(prev => [...prev, {
+        text: '✓ Email client opened successfully!',
+        type: 'success'
       }]);
 
       setTimeout(() => {
         toast({
-          title: "Message Sent!",
-          description: response.message || "Thank you for reaching out. I'll get back to you soon!",
+          title: "Email Client Opened",
+          description: "Please send the pre-filled email to complete your message.",
         });
         setFormData({ name: '', email: '', subject: '', message: '' });
         setIsSubmitting(false);
         setTerminalOutput([]);
       }, 1000);
     } catch (error) {
-      setTerminalOutput(prev => [...prev, { 
-        text: '✗ Error sending message: ' + (error.response?.data?.detail || error.message), 
-        type: 'error' 
+      setTerminalOutput(prev => [...prev, {
+        text: '✗ Error opening email client: ' + error.message,
+        type: 'error'
       }]);
-      
+
       toast({
         title: "Error",
-        description: "Failed to send message. Please try again.",
+        description: "Failed to open email client. Please try again.",
         variant: "destructive"
       });
-      
+
       setIsSubmitting(false);
     }
   };
@@ -201,15 +204,14 @@ const ContactSection = () => {
                   {terminalOutput.map((output, idx) => (
                     <div
                       key={idx}
-                      className={`${
-                        output.type === 'success'
+                      className={`${output.type === 'success'
                           ? 'text-green-400'
                           : output.type === 'error'
-                          ? 'text-red-400'
-                          : output.text.startsWith('$')
-                          ? 'text-pink-500'
-                          : 'text-gray-300'
-                      }`}
+                            ? 'text-red-400'
+                            : output.text.startsWith('$')
+                              ? 'text-pink-500'
+                              : 'text-gray-300'
+                        }`}
                     >
                       {output.text}
                     </div>
@@ -228,7 +230,7 @@ const ContactSection = () => {
           >
             <Mail className="text-purple-400 mx-auto mb-2" size={24} />
             <div className="text-white font-mono text-sm">Email</div>
-            <div className="text-gray-500 text-xs mt-1">{contactInfo.email.replace('@gmail.com','')}</div>
+            <div className="text-gray-500 text-xs mt-1">{contactInfo.email.replace('@gmail.com', '')}</div>
           </a>
           <a
             href={contactInfo.github.url}
@@ -249,7 +251,7 @@ const ContactSection = () => {
             className="bg-gray-900 rounded-lg p-4 border border-purple-500/30 hover:border-pink-500/50 transition-colors duration-300 text-center"
           >
             <svg className="w-6 h-6 text-purple-400 mx-auto mb-2" fill="currentColor" viewBox="0 0 24 24">
-              <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+              <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
             </svg>
             <div className="text-white font-mono text-sm">LinkedIn</div>
             <div className="text-gray-500 text-xs mt-1">{contactInfo.linkedin.displayName}</div>
@@ -266,7 +268,7 @@ const ContactSection = () => {
               </desc>
               <title>LeetCode</title>
               <path d="M13.483 0a1.374 1.374 0 0 0 -0.961 0.438L7.116 6.226l-3.854 4.126a5.266 5.266 0 0 0 -1.209 2.104 5.35 5.35 0 0 0 -0.125 0.513 5.527 5.527 0 0 0 0.062 2.362 5.83 5.83 0 0 0 0.349 1.017 5.938 5.938 0 0 0 1.271 1.818l4.277 4.193 0.039 0.038c2.248 2.165 5.852 2.133 8.063 -0.074l2.396 -2.392c0.54 -0.54 0.54 -1.414 0.003 -1.955a1.378 1.378 0 0 0 -1.951 -0.003l-2.396 2.392a3.021 3.021 0 0 1 -4.205 0.038l-0.02 -0.019 -4.276 -4.193c-0.652 -0.64 -0.972 -1.469 -0.948 -2.263a2.68 2.68 0 0 1 0.066 -0.523 2.545 2.545 0 0 1 0.619 -1.164L9.13 8.114c1.058 -1.134 3.204 -1.27 4.43 -0.278l3.501 2.831c0.593 0.48 1.461 0.387 1.94 -0.207a1.384 1.384 0 0 0 -0.207 -1.943l-3.5 -2.831c-0.8 -0.647 -1.766 -1.045 -2.774 -1.202l2.015 -2.158A1.384 1.384 0 0 0 13.483 0zm-2.866 12.815a1.38 1.38 0 0 0 -1.38 1.382 1.38 1.38 0 0 0 1.38 1.382H20.79a1.38 1.38 0 0 0 1.38 -1.382 1.38 1.38 0 0 0 -1.38 -1.382z" fill="#c27aff" stroke-width="1"></path>
-            </svg>      
+            </svg>
             <div className="text-white font-mono text-sm">LeetCode</div>
             <div className="text-gray-500 text-xs mt-1">{contactInfo.leetcode.displayName}</div>
           </a>
