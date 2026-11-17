@@ -67,11 +67,11 @@ export default function CertificationCarousel() {
                         <div className="flex -ml-4">
                             {slides.map((b, i) => (
                                 <div key={`${b.id}-${i}`}
-                                    className="flex-[0_0_85%] md:flex-[0_0_45%] lg:flex-[0_0_30%] min-w-0 pl-4">
-                                    <div className="card h-64 sm:h-80 md:h-96 lg:h-[30rem] overflow-hidden rounded-xl border-4 border-s-purple-600 flex flex-col items-center pb-3" >
-                                        <img className="h-1/2 shrink-0 w-full object-contain bg-[#F4F3EE] p-2" src={b.img} alt={b.title} />
+                                    className="flex flex-[0_0_85%] md:flex-[0_0_45%] lg:flex-[0_0_30%] min-w-0 pl-4">
+                                    <div className="card w-full overflow-hidden rounded-xl border-4 border-s-purple-600 flex flex-col items-center pb-3" >
+                                        <img className="h-44 md:h-52 lg:h-60 shrink-0 w-full object-contain bg-[#F4F3EE] p-2" src={b.img} alt={b.title} />
                                         <h3 className="pt-3 pb-1 px-1 text-center" >{b.title}</h3>
-                                        <div className="pt-3 pb-1 px-3 font-mono">
+                                        <div className="pt-3 pb-4 px-3 font-mono">
                                             <p className="text-base text-purple-400 font-semibold">{b.IssuingOrganization}</p>
                                             <ReadMore className="text-[0.75rem]" maxLength={100}>{b.desc}</ReadMore>
                                         </div>
@@ -89,7 +89,7 @@ export default function CertificationCarousel() {
                             ))}
                         </div>
                     </div>
-                    <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-24 rounded-r-xl bg-linear-to-l from-black/80 to-transparent" />
+                    <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-12 sm:w-24 rounded-r-xl bg-linear-to-l from-black/80 to-transparent" />
                     <button
                         onClick={prev}
                         aria-label="Previous"
