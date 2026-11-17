@@ -79,7 +79,7 @@ const ContactSection = () => {
 
   return (
     <section className="min-h-screen py-20 px-4" id="contact">
-      <div className="max-w-4xl mx-auto">
+      <div className="max-w-6xl mx-auto">
         <div className="mb-12">
           <div className="flex items-center space-x-3 mb-4">
             <Mail className="text-pink-500" size={32} />
@@ -205,12 +205,12 @@ const ContactSection = () => {
                     <div
                       key={idx}
                       className={`${output.type === 'success'
-                          ? 'text-green-400'
-                          : output.type === 'error'
-                            ? 'text-red-400'
-                            : output.text.startsWith('$')
-                              ? 'text-pink-500'
-                              : 'text-gray-300'
+                        ? 'text-green-400'
+                        : output.type === 'error'
+                          ? 'text-red-400'
+                          : output.text.startsWith('$')
+                            ? 'text-pink-500'
+                            : 'text-gray-300'
                         }`}
                     >
                       {output.text}

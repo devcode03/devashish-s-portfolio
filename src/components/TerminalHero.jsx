@@ -12,6 +12,11 @@ const TerminalHero = ({ onCommandExecute }) => {
   const inputRef = useRef(null);
   const terminalRef = useRef(null);
 
+  const navigateAfterDelay = (sectionId, label) => {
+    setTimeout(() => onCommandExecute(sectionId), 900);
+    return [`Navigating to ${label} section...`];
+  };
+
   const commands = {
     help: () => [
       'Available commands:',
@@ -20,6 +25,7 @@ const TerminalHero = ({ onCommandExecute }) => {
       '  skills        - Navigate to skills section',
       '  projects      - Navigate to projects section',
       '  experience    - Navigate to experience section',
+      '  certification - Navigate to certification section',
       '  resume        - Navigate to resume section',
       '  contact       - Navigate to contact section',
       '  clear         - Clear terminal',
@@ -34,30 +40,13 @@ const TerminalHero = ({ onCommandExecute }) => {
       '  "status": "Available for opportunities"',
       '}'
     ],
-    about: () => {
-      onCommandExecute('about');
-      return ['Navigating to About section...'];
-    },
-    skills: () => {
-      onCommandExecute('skills');
-      return ['Navigating to Skills section...'];
-    },
-    projects: () => {
-      onCommandExecute('projects');
-      return ['Navigating to Projects section...'];
-    },
-    experience: () => {
-      onCommandExecute('experience');
-      return ['Navigating to Experience section...'];
-    },
-    resume: () => {
-      onCommandExecute('resume');
-      return ['Navigating to Resume section...'];
-    },
-    contact: () => {
-      onCommandExecute('contact');
-      return ['Navigating to Contact section...'];
-    },
+    about: () => navigateAfterDelay('about', 'About'),
+    skills: () => navigateAfterDelay('skills', 'Skills'),
+    projects: () => navigateAfterDelay('projects', 'Projects'),
+    experience: () => navigateAfterDelay('experience', 'Experience'),
+    certification: () => navigateAfterDelay('Certifications', 'Certification'),
+    resume: () => navigateAfterDelay('resume', 'Resume'),
+    contact: () => navigateAfterDelay('contact', 'Contact'),
     clear: () => {
       setHistory([]);
       return [];
@@ -74,7 +63,7 @@ const TerminalHero = ({ onCommandExecute }) => {
 
   const executeCommand = (cmd) => {
     const cmdTrimmed = cmd.trim().toLowerCase();
-    const output = commands[cmdTrimmed] 
+    const output = commands[cmdTrimmed]
       ? commands[cmdTrimmed]()
       : [`Command not found: ${cmd}. Type "help" for available commands.`];
 
@@ -127,7 +116,7 @@ const TerminalHero = ({ onCommandExecute }) => {
   return (
     <section className="min-h-screen flex items-center justify-center px-4 py-20" id="home">
       <div className="w-full max-w-4xl" style={{ pointerEvents: 'auto' }}>
-        <div 
+        <div
           className="bg-gray-900 rounded-lg shadow-2xl border border-purple-500/40 overflow-hidden"
           style={{
             boxShadow: '0 0 15px rgba(168, 85, 247, 0.15), 0 0 30px rgba(168, 85, 247, 0.08)'
@@ -146,7 +135,7 @@ const TerminalHero = ({ onCommandExecute }) => {
             <div className="w-16"></div>
           </div>
 
-          <div 
+          <div
             ref={terminalRef}
             className="p-6 h-96 overflow-y-auto font-mono text-sm"
             onClick={() => inputRef.current?.focus()}
