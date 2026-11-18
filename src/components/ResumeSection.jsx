@@ -29,9 +29,7 @@ const ResumeSection = () => {
   const [showViewer, setShowViewer] = useState(false);
 
   const handleDownload = () => {
-    // Convert Google Drive link to direct download URL
     let downloadUrl = aboutData.resumeUrl;
-    
     try {
       const parsed = new URL(downloadUrl);
       if (parsed.hostname.includes('drive.google.com')) {
@@ -92,7 +90,7 @@ const ResumeSection = () => {
                   />
                   <div className="absolute inset-0 bg-gradient-to-br from-purple-600/10 to-pink-600/10"></div>
                   <div className="relative z-10 text-center">
-                    <Eye className="mx-auto text-white mb-3"    size={48} />
+                    <Eye className="mx-auto text-white mb-3" size={48} />
                     <p className="text-gray-200 font-mono text-sm">Click to view</p>
                   </div>
                   <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
@@ -133,7 +131,7 @@ const ResumeSection = () => {
                   <div>
                     <h3 className="text-xl font-bold text-white mb-2 font-mono">Professional Resume</h3>
                     <p className="text-gray-400 text-sm">
-                      Comprehensive overview of my professional experience, technical skills, 
+                      Comprehensive overview of my professional experience, technical skills,
                       education, and key achievements. Updated regularly to reflect latest accomplishments.
                     </p>
                   </div>

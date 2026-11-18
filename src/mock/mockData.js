@@ -147,4 +147,5 @@ export const aboutData = {
   projectsCompleted: 5,
   coffeeConsumed: '∞',
   favoriteEditor: 'VS Code',
+  resumeUrl: "https://drive.google.com/file/d/1UqOngV49VOXqOYu-_LDhdUkDGVbLcS5a/view?usp=drive_link"
 };
