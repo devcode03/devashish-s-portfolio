@@ -1,15 +1,19 @@
-import React, { useState } from 'react';
-import { Mail, Send, CheckCircle2, XCircle } from 'lucide-react';
+import { useState } from 'react';
+import { Mail, Send } from 'lucide-react';
 import { toast } from '../hooks/use-toast';
 import { contactInfo } from '../config/contactInfo';
-import { SiLeetcode } from "react-icons/si";
+import emailjs from '@emailjs/browser';
 
+const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+
+const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
 const ContactSection = () => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
-    subject: '',
     message: ''
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -24,55 +28,54 @@ const ContactSection = () => {
     setIsSubmitting(true);
     setTerminalOutput([]);
 
-    // Simulate terminal output
-    const outputs = [
-      { text: '$ send_message --init', delay: 0 },
-      { text: '> Validating form data...', delay: 300 },
-      { text: '> Checking email format...', delay: 600 },
-      { text: '✓ Validation successful', delay: 900, type: 'success' },
-      { text: '> Establishing connection...', delay: 1200 },
-      { text: '> Sending message...', delay: 1500 }
-    ];
+    const log = (text, type) => setTerminalOutput(prev => [...prev, { text, type }]);
 
-    for (const output of outputs) {
-      await new Promise(resolve => setTimeout(resolve, output.delay));
-      setTerminalOutput(prev => [...prev, output]);
+    // Short staged output for the terminal effect; the real request follows
+    const steps = [
+      '$ send_message --init',
+      '> Validating form data...',
+      '> Checking email format...',
+    ];
+    for (const step of steps) {
+      log(step);
+      await sleep(250);
     }
+    log('✓ Validation successful', 'success');
 
     try {
-      const subject = encodeURIComponent(formData.subject);
-      const body = encodeURIComponent(
-        `${formData.message}\n\n— ${formData.name} (${formData.email})`
+      if (!serviceId || !templateId || !publicKey) {
+        throw new Error('EmailJS is not configured');
+      }
+
+      log('> Sending message...');
+      await emailjs.send(
+        serviceId,
+        templateId,
+        {
+          name: formData.name.trim(),
+          email: formData.email.trim(),
+          message: formData.message.trim()
+        },
+        { publicKey }
       );
-      window.location.href = `mailto:${contactInfo.email}?subject=${subject}&body=${body}`;
 
-      await new Promise(resolve => setTimeout(resolve, 500));
-      setTerminalOutput(prev => [...prev, {
-        text: '✓ Email client opened successfully!',
-        type: 'success'
-      }]);
-
-      setTimeout(() => {
-        toast({
-          title: "Email Client Opened",
-          description: "Please send the pre-filled email to complete your message.",
-        });
-        setFormData({ name: '', email: '', subject: '', message: '' });
-        setIsSubmitting(false);
-        setTerminalOutput([]);
-      }, 1000);
+      log('✓ Message sent successfully!', 'success');
+      toast({
+        title: "Message Sent",
+        description: "Thanks for reaching out! I'll get back to you soon.",
+      });
+      setFormData({ name: '', email: '', message: '' });
+      await sleep(3000);
+      setTerminalOutput([]);
     } catch (error) {
-      setTerminalOutput(prev => [...prev, {
-        text: '✗ Error opening email client: ' + error.message,
-        type: 'error'
-      }]);
-
+      const reason = error?.text || error?.message || 'Unknown error';
+      log('✗ Error sending message: ' + reason, 'error');
       toast({
         title: "Error",
-        description: "Failed to open email client. Please try again.",
+        description: `Failed to send message. You can email me directly at ${contactInfo.email}.`,
         variant: "destructive"
       });
-
+    } finally {
       setIsSubmitting(false);
     }
   };
@@ -130,21 +133,6 @@ const ContactSection = () => {
                   required
                   className="w-full bg-gray-950 text-white px-4 py-2 rounded border border-purple-500/30 focus:border-pink-500 focus:outline-none font-mono"
                   placeholder="your.email@example.com"
-                />
-              </div>
-
-              <div>
-                <label className="block text-sm font-mono text-gray-400 mb-2">
-                  <span className="text-purple-400">--subject</span>
-                </label>
-                <input
-                  type="text"
-                  name="subject"
-                  value={formData.subject}
-                  onChange={handleChange}
-                  required
-                  className="w-full bg-gray-950 text-white px-4 py-2 rounded border border-purple-500/30 focus:border-pink-500 focus:outline-none font-mono"
-                  placeholder="Subject"
                 />
               </div>
 
