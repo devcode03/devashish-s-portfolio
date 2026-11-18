@@ -1,7 +1,6 @@
 // Certification_data =
 
 import ReadMore from "./readmore";
-import { useRef, useState } from "react";
 import useEmblaCarousel from "embla-carousel-react";
 import { Award, ChevronLeft, ChevronRight, ExternalLink } from "lucide-react";
 
@@ -17,6 +16,14 @@ const cert_data = [
         IssuingOrganization: "Anthropic",
         desc: "The Claude Certified Associate – Foundations credential is designed for client-facing and delivery practitioners. Earners can apply Claude to everyday business tasks, evaluate and refine its output, select the right products and models, and use Claude responsibly.",
         CredentialUrl: "https://www.credly.com/badges/f7939937-cb76-4ab9-98a2-d4a4aaab8aa8/public_url"
+    },
+    {
+        id: 5,
+        img: "/assets/claude-certified-developer-foundations.png",
+        title: "Claude Certified Developer - Foundations",
+        IssuingOrganization: "Anthropic",
+        desc: "The Claude Certified Developer – Foundations credential is designed for developers. Earners can build, integrate, and ship production applications and agents on Claude using the Claude API, Claude Code, custom tools, and MCP servers.",
+        CredentialUrl: "https://www.credly.com/badges/532f296d-e2a0-4ef4-a7db-70542d725a2c/public_url"
     },
     {
         id: 2,
